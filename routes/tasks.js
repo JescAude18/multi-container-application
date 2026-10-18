@@ -77,7 +77,7 @@ router.put('/:id', async (req, res) => {
                 completed: req.body.completed
             },
             {
-                new: true,
+                returnDocument: 'after',
                 runValidators: true,
                 overwrite: true
             }
@@ -134,7 +134,7 @@ router.patch('/:id', async (req, res) => {
             req.params.id,
             updates,
             {
-                new: true,
+                returnDocument: 'after',
                 runValidators: true
             }
         );
