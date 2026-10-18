@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const tasksRouter = require('./routes/tasks');
 
 const app = express();
 
@@ -7,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/tododb';
 
 app.use(express.json());
+app.use('/api/tasks', tasksRouter);
 
 app.get('/', (req, res) => {
     res.json({
