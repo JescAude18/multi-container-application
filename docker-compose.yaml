@@ -1,15 +1,18 @@
 services:
   mongodb:
-    image: mongo:8.0
+    image: mongo:9.0.4
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
+      MONGODB_APP_USER: ${MONGODB_APP_USER}
+      MONGODB_APP_PASSWORD: ${MONGODB_APP_PASSWORD}
+      MONGODB_DATABASE: ${MONGODB_DATABASE}
     ports:
       - "${MONGODB_LOCAL_PORT}:${MONGODB_DOCKER_PORT}"
     volumes:
       - db:/data/db
-      - ./mongo-init:/docker-entrypoint-initdb.d:ro
+      - ./mongodb-init:/docker-entrypoint-initdb.d:ro
 
   app:
     depends_on:
