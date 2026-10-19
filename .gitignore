@@ -1,2 +1,15 @@
+# node_modules
 node_modules
+
+#.env
 .env
+
+# terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/terraform.tfvars
+terraform/*.tfvars
+terraform/*.auto.tfvars
+terraform/*.tfplan
+terraform/plan.out
