@@ -1,0 +1,8 @@
+---
+
+- name: Calling base role setup
+  become: true
+  hosts: webservers
+  roles:
+    - base
+    - docker
