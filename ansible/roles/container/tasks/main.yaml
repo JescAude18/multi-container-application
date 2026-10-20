@@ -1,0 +1,19 @@
+---
+- name: Pull Node.js API image from Docker Hub
+  community.docker.docker_image_pull:
+    name: jescocker/multi-container-service:v.0.0.0
+
+- name: Create application directory
+  ansible.builtin.file:
+    path: /opt/multi-container-service/
+    state: directory
+
+- name: Copy user creation script on VM
+  ansible.builtin.copy:
+    src: /mongodb-init
+    dest: /opt/multi-container-service/mongodb-init
+
+- name: Copy docker-compose file
+  ansible.builtin.template:
+    src: docker-compose.yaml.j2
+    dest: /opt/multi-container-service/docker-compose.yaml
