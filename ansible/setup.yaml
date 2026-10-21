@@ -3,6 +3,8 @@
 - name: Calling base role setup
   become: true
   hosts: webservers
+  vars_files:
+  - vault/env_production.yml
   roles:
     - base
     - docker
