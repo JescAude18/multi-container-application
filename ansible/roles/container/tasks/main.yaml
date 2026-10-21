@@ -23,4 +23,3 @@
     project_src: /application/multi-container-service/
     state: present
     pull: always
-    wait: true
