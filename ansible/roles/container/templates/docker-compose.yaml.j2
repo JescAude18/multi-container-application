@@ -1,0 +1,26 @@
+services:
+  mongodb:
+    image: "{{ mongodb_image }}"
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "{{ mongodb_root_user }}"
+      MONGO_INITDB_ROOT_PASSWORD: "{{ mongodb_root_password }}"
+      MONGODB_APP_USER: "{{ mongodb_app_user }}"
+      MONGODB_APP_PASSWORD: "{{ mongodb_app_password }}"
+      MONGODB_DATABASE: "{{ mongodb_database }}"
+    volumes:
+      - db:/data/db
+      - ./mongodb-init:/docker-entrypoint-initdb.d:ro
+
+  app:
+    depends_on:
+      - mongodb
+    image: "{{ api_image }}"
+    restart: always
+    ports:
+      - "{{ node_local_port }}:{{ node_docker_port }}"
+    environment:
+      MONGO_URL: "mongodb://{{ mongodb_app_user }}:{{ mongodb_app_password }}@mongodb:{{ mongodb_docker_port }}/{{ mongodb_database }}"
+
+volumes:
+  db:
