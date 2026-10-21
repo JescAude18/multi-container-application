@@ -8,8 +8,6 @@ services:
       MONGODB_APP_USER: ${MONGODB_APP_USER}
       MONGODB_APP_PASSWORD: ${MONGODB_APP_PASSWORD}
       MONGODB_DATABASE: ${MONGODB_DATABASE}
-    ports:
-      - "${MONGODB_LOCAL_PORT}:${MONGODB_DOCKER_PORT}"
     volumes:
       - db:/data/db
       - ./mongodb-init:/docker-entrypoint-initdb.d:ro
@@ -24,7 +22,7 @@ services:
     ports:
       - "${NODE_LOCAL_PORT}:${NODE_DOCKER_PORT}"
     environment:
-      - MONGO_URL=mongodb://${MONGODB_APP_USER}:${MONGODB_APP_PASSWORD}@mongodb:${MONGODB_DOCKER_PORT}/${MONGODB_DATABASE}
+      MONGO_URL: "mongodb://${MONGODB_APP_USER}:${MONGODB_APP_PASSWORD}@mongodb:${MONGODB_DOCKER_PORT}/${MONGODB_DATABASE}"
 
 volumes:
   db:
