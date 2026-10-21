@@ -4,7 +4,8 @@
   become: true
   hosts: webservers
   vars_files:
-  - vault/env_production.yml
+  - vault/env_production.yaml
   roles:
     - base
     - docker
+    - container
