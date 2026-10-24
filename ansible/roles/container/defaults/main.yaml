@@ -1,4 +1,1 @@
 mongodb_image: mongo:9.0.4
-
-api_image: jescocker/multi-container-service:v.0.0.0
-
