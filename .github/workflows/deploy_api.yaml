@@ -27,6 +27,14 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
 
+      
+      - name: Verify build context
+        run: |
+          pwd
+          ls -la
+          git rev-parse HEAD
+          git ls-files dockerfile.api
+          test -f ./dockerfile.api && echo "Dockerfile found" || echo "Dockerfile NOT found"
       - name: Build and push
         uses: docker/build-push-action@v7
         with:
